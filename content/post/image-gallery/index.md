@@ -12,7 +12,7 @@ To use this feature, the image must be in the same directory as the Markdown fil
 ## Syntax
 
 ```markdown
-![Image 1](1.jpg) ![Image 2](2.jpg)
+![Image 1](1.jpg) ![Image 2](2.jpg) ![Image 1](1.jpg) ![Image 2](2.jpg) 
 ```
 
 ## Result
