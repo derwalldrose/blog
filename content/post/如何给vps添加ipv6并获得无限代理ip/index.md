@@ -182,7 +182,6 @@ sudo ifdown he-ipv6
 sudo rm -f /etc/network/interfaces.d/he-ipv6
 ```
 
-
 ### 无限ipv6代理 Http Proxy IPv6 Pool
 
 Make every request from a separate IPv6 address.
