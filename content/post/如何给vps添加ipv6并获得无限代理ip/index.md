@@ -11,10 +11,7 @@ tags:
 weight: 1       # You can add weight to some posts to override the default sorting (date descending)
 ---
 
-以下是将前文内容转成Markdown代码的版本：
-
-```md
-# Hurricane Electric (简称：HE) 隧道服务简介
+### Hurricane Electric (简称：HE) 隧道服务简介
 
 Hurricane Electric (简称：HE) 是一家位于美国的全球互联网服务提供商。该公司运营了世界上以对等数最大 IPv6 网络，同时也提供免费的 IPv6 隧道服务，其隧道服务可以追溯到 2001 年。虽然经过多年的发展 IPv6 已经相当普及，但依然还是有部分 VPS 商家由于各种各样的原因没有给 VPS 标配 IPv6 地址，有的需要加钱、有的甚至不给加钱。如果此时有访问 IPv6 网络的需求，就可以接入 HE Tun­nel Bro­ker 提供的 IPv6 隧道免费给 IPv4 VPS 主机添加公网 IPv6 地址来获得 IPv6 网络的访问能力。
 
