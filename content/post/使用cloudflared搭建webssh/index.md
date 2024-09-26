@@ -1,13 +1,13 @@
 ---
-title: 如何给vps添加ipv6并获得无限代理ip
-description: 如何给vps添加ipv6并获得无限代理ip
-slug: 如何给vps添加ipv6并获得无限代理ip
+title: 使用cloudflared搭建webssh
+description: 使用cloudflared搭建webssh
+slug: 使用cloudflared搭建webssh
 date: 2024-09-20 00:00:00+0000
 image: cover.jpg
 categories:
-    - 代理ip
+    - cloudflared
 tags:
-    - 代理ip
+    - cloudflared
 weight: 1       # You can add weight to some posts to override the default sorting (date descending)
 ---
 
