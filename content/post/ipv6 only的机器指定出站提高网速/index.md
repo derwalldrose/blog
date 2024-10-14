@@ -3,7 +3,7 @@ title: ipv6 only的机器指定出站提高网速
 description: ipv6 only的机器指定出站提高网速
 slug: ipv6 only的机器指定出站提高网速
 date: 2024-09-20 00:00:00+0000
-image: https://pic.jiasu.in/1728899221701.png
+image: https://pic.jiasu.in/1728899697359.png
 categories:
     - 代理ip,ipv6 only
 tags:
@@ -11,9 +11,6 @@ tags:
 weight: 1       # You can add weight to some posts to override the default sorting (date descending)
 ---
 
-![image](https://pic.jiasu.in/1728899221701.png)
-
-![image](https://pic.jiasu.in/1728899221600.png)
 ### ipv6 only
 
 ipv6 only的机器没有v4入口，但是一般自带v4出口，带宽很小，只有v6带宽高
@@ -52,4 +49,4 @@ PersistentKeepalive = 30
 ```
 
 
-> Photo by [Pawel Czerwinski](https://unsplash.com/@pawel_czerwinski) on [Unsplash](https://unsplash.com/)
+> ![image](https://pic.jiasu.in/1728899697359.png)
