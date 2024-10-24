@@ -86,6 +86,6 @@ systemctl restart iycms     	# 重新启动iycms服务
 
 模板的话，需要提前把模板压缩包备份，用的时候放到 `/iycms/data/tpl/` 目录下。
 
-资源备份地址：https://github.com/LiangZuoting/iycms-backup
+资源备份地址：[github](https://github.com/LiangZuoting/iycms-backup)
 
 > Photo by [Pawel Czerwinski](https://unsplash.com/@pawel_czerwinski) on [Unsplash](https://unsplash.com/)
