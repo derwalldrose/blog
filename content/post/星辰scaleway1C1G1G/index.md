@@ -37,13 +37,13 @@ scw instance server delete 88e2ffa0-3923-42a1-9b3e-bf51774261ea zone=pl-waw-2 wi
 - 左侧 Instances，Security group 选项卡，进入，Rules 选项卡，右侧编辑，添加所有协议的入栈出栈 Accept 规则
 - 分离/创建/删除硬盘
 - 面板关机：左侧 Instances，进入实例管理面板，右上角开关，关机
-分离 10GB 硬盘：实例管理面板，Attached volumes 选项卡，在硬盘右侧三个点选 Detach 解绑
-创建 1GB 硬盘：点击 Create Volume 创建 Local Storage，大小 1GB
-删除 10GB 硬盘：左侧 Instances，Volumes 选项卡，旧 10GB 硬盘右侧三个点选 Delete 删除
-救援模式/连接 SSH
-在实例管理面板的 Advanced settings 选项卡中，选中 Use rescue image，保存
-面板关机：左侧 Instances，进入实例管理面板，右上角开关，开机
-重启后耐心等待 10 分钟，通过创建的 SSH Key 连接实例，执行命令：
+- 分离 10GB 硬盘：实例管理面板，Attached volumes 选项卡，在硬盘右侧三个点选 Detach 解绑
+- 创建 1GB 硬盘：点击 Create Volume 创建 Local Storage，大小 1GB
+- 删除 10GB 硬盘：左侧 Instances，Volumes 选项卡，旧 10GB 硬盘右侧三个点选 Delete 删除
+## 救援模式/连接 SSH
+- 在实例管理面板的 Advanced settings 选项卡中，选中 Use rescue image，保存
+- 面板关机：左侧 Instances，进入实例管理面板，右上角开关，开机
+- 重启后耐心等待 10 分钟，通过创建的 SSH Key 连接实例，执行命令：
 ```
 parted /dev/vda mklabel gpt
 wget -qO- https://dl-cdn.alpinelinux.org/alpine/v3.20/releases/x86_64/alpine-virt-3.20.1-x86_64.iso | dd of=/dev/vda
