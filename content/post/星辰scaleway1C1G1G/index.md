@@ -145,4 +145,22 @@ lsmod | grep bbr
  
 //出现以下内容表示成功：tcp_bbr
 
+参考: https://www.hupan.li/111.html
+
+命令行
+```
+scw instance server create zone=fr-par-1 root-volume=local:10GB name=fr type=STARDUST1-S ipv6=true
+
+scw instance server stop 23545cdb-69e7-44ff-9f51-3406669832a6 zone=fr-par-1
+
+scw instance server detach-volume volume-id=4a0bd2f0-65b3-475f-8134-5ae16fda8c4d zone=fr-par-1
+
+scw instance volume delete 4a0bd2f0-65b3-475f-8134-5ae16fda8c4d
+
+失败：scw instance volume create name=fr-1g volume_type=l_ssd size=1g
+
+scw instance server attach-volume volume-id=052e8a24-aa73-46c8-ae42-7e62438600ba server-id=23545cdb-69e7-44ff-9f51-3406669832a6 zone=fr-par-1
+
+scw instance server start 23545cdb-69e7-44ff-9f51-3406669832a6 zone=fr-par-1
+```
 > Photo by [Pawel Czerwinski](https://unsplash.com/@pawel_czerwinski) on [Unsplash](https://unsplash.com/)
