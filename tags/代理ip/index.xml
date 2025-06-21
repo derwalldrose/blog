@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>代理ip on 沧海一声笑</title><link>https://blog.yonflee.us.kg/tags/%E4%BB%A3%E7%90%86ip/</link><description>Recent content in 代理ip on 沧海一声笑</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 20 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.yonflee.us.kg/tags/%E4%BB%A3%E7%90%86ip/index.xml" rel="self" type="application/rss+xml"/><item><title>如何给vps添加ipv6并获得无限代理ip</title><link>https://blog.yonflee.us.kg/p/%E5%A6%82%E4%BD%95%E7%BB%99vps%E6%B7%BB%E5%8A%A0ipv6%E5%B9%B6%E8%8E%B7%E5%BE%97%E6%97%A0%E9%99%90%E4%BB%A3%E7%90%86ip/</link><pubDate>Fri, 20 Sep 2024 00:00:00 +0000</pubDate><guid>https://blog.yonflee.us.kg/p/%E5%A6%82%E4%BD%95%E7%BB%99vps%E6%B7%BB%E5%8A%A0ipv6%E5%B9%B6%E8%8E%B7%E5%BE%97%E6%97%A0%E9%99%90%E4%BB%A3%E7%90%86ip/</guid><description>&lt;img src="https://blog.yonflee.us.kg/p/%E5%A6%82%E4%BD%95%E7%BB%99vps%E6%B7%BB%E5%8A%A0ipv6%E5%B9%B6%E8%8E%B7%E5%BE%97%E6%97%A0%E9%99%90%E4%BB%A3%E7%90%86ip/cover.jpg" alt="Featured image of post 如何给vps添加ipv6并获得无限代理ip" />&lt;h3 id="hurricane-electric-简称he-隧道服务简介">Hurricane Electric (简称：HE) 隧道服务简介
+&lt;/h3>&lt;p>Hurricane Electric (简称：HE) 是一家位于美国的全球互联网服务提供商。该公司运营了世界上以对等数最大 IPv6 网络，同时也提供免费的 IPv6 隧道服务，其隧道服务可以追溯到 2001 年。虽然经过多年的发展 IPv6 已经相当普及，但依然还是有部分 VPS 商家由于各种各样的原因没有给 VPS 标配 IPv6 地址，有的需要加钱、有的甚至不给加钱。如果此时有访问 IPv6 网络的需求，就可以接入 HE Tun­nel Bro­ker 提供的 IPv6 隧道免费给 IPv4 VPS 主机添加公网 IPv6 地址来获得 IPv6 网络的访问能力。&lt;/p>
+&lt;h2 id="he-ipv6-隧道的使用场景与局限性">HE IPv6 隧道的使用场景与局限性
+&lt;/h2>&lt;h3 id="使用场景">使用场景：
+&lt;/h3>&lt;ul>
+&lt;li>给 VPS 服务器、家用设备接入 IPv6 公网访问能力&lt;/li>
+&lt;li>使 IPv4 VPS 可访问 IPv6 网络，比如给 IPv6 Only VPS 做 SSH 跳板&lt;/li>
+&lt;li>HE IPv6 地址可绕过部分网站的 IP 访问限制：
+&lt;ul>
+&lt;li>解锁 Netflix 非自制剧 (已失效)&lt;/li>
+&lt;li>解锁 ChatGPT 访问限制 (只验证可访问，未验证是否稳定不封号)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="局限性">局限性：
+&lt;/h3>&lt;ul>
+&lt;li>无法使用 HE 提供的 IPv6 公网 IP 接入 Cloudflare CDN 。&lt;/li>
+&lt;li>滥用严重，IP 评分机构标记为高风险。使用 HE IPv6 访问网站会遇到以下问题：
+&lt;ul>
+&lt;li>部分网站为了防止资源滥用，可能会限制访问、频繁弹人机验证、无法注册。&lt;/li>
+&lt;li>银行、购物等安全要求高的网站可能会判定为欺诈行为、导致砍单，严重会导致封号。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="he-tunnel-broker-设置教程">HE Tunnel Broker 设置教程
+&lt;/h2>&lt;h3 id="创建-tunnel-broker-ipv6-隧道">创建 Tunnel Broker IPv6 隧道
+&lt;/h3>&lt;ol>
+&lt;li>注册 Tunnel Broker 账号。&lt;/li>
+&lt;li>点击左侧的 &lt;code>Create Regular Tunnel&lt;/code>（创建常规隧道）。&lt;/li>
+&lt;li>输入 VPS 的公网 IP 地址。&lt;/li>
+&lt;li>根据 VPS 的位置选择一个合适的节点。&lt;/li>
+&lt;li>页面拉到最下方，点击 &lt;code>Create Tunnel&lt;/code>（创建隧道）。&lt;/li>
+&lt;/ol>
+&lt;p>在 &lt;code>Tunnel Details&lt;/code> 页面可以看到创建的 IPv6 隧道的详细信息，其中 &lt;code>Client IPv6 Address&lt;/code> 是申请到的公网 IPv6 地址。&lt;/p>
+&lt;h3 id="获取配置示例">获取配置示例
+&lt;/h3>&lt;p>在 &lt;code>Tunnel Details&lt;/code> 页面有个 &lt;code>Example Configuration&lt;/code> 选项卡，在这里你可以选择合适的配置示例。就比如这里有 De­bian/​Ubuntu 的 &lt;code>interfaces&lt;/code> 配置文件示例：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># /etc/network/interfaces.d/he-ipv6&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">auto he-ipv6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iface he-ipv6 inet6 v4tunnel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> address 2001:xxx:xxxx:xxxx::2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> netmask &lt;span class="m">64&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> endpoint 216.66.84.46
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">local&lt;/span> 233.xxx.xxx.233
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ttl &lt;span class="m">255&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> gateway 2001:xxx:xxxx:xxxx::1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">EOF
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>TIPS: 如果是 NAT VPS 或 VPC 内网方案则需要将&lt;code>local&lt;/code>字段后面的公网 IP 替换为内网 IP 。获取命令：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ip route get 8.8.8.8 &lt;span class="p">|&lt;/span> grep -oP &lt;span class="s1">&amp;#39;src \K\S+&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="启用-ipv6-隧道">启用 IPv6 隧道
+&lt;/h3>&lt;ol>
+&lt;li>安装网络工具包&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo apt update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install net-tools iproute2 -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>启动 he-ipv6 网络接口&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo ifup he-ipv6
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>TIPS：若提示 &lt;code>ifup: unknown interface he-ipv6&lt;/code> ，则添加 &lt;code>source /etc/network/interfaces.d/*&lt;/code>到&lt;code>/etc/network/interfaces&lt;/code>文件：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;source /etc/network/interfaces.d/*&amp;#39;&lt;/span> &amp;gt;&amp;gt;/etc/network/interfaces
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>启用后执行 &lt;code>ifconfig&lt;/code> 命令，这时应该有一个 he-ipv6 接口，类似下面这样：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">he-ipv6: &lt;span class="nv">flags&lt;/span>&lt;span class="o">=&lt;/span>209&amp;lt;UP,POINTOPOINT,RUNNING,NOARP&amp;gt; mtu &lt;span class="m">1480&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> inet6 2001:xxx:xxxx:xxxx::2 prefixlen &lt;span class="m">64&lt;/span> scopeid 0x0&amp;lt;global&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> inet6 fe80::xxxx:xxxx prefixlen &lt;span class="m">64&lt;/span> scopeid 0x20&amp;lt;link&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sit txqueuelen &lt;span class="m">1000&lt;/span> &lt;span class="o">(&lt;/span>IPv6-in-IPv4&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RX packets &lt;span class="m">11605&lt;/span> bytes &lt;span class="m">3127821&lt;/span> &lt;span class="o">(&lt;/span>3.1 MB&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RX errors &lt;span class="m">0&lt;/span> dropped &lt;span class="m">0&lt;/span> overruns &lt;span class="m">0&lt;/span> frame &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TX packets &lt;span class="m">13811&lt;/span> bytes &lt;span class="m">2403522&lt;/span> &lt;span class="o">(&lt;/span>2.4 MB&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TX errors &lt;span class="m">0&lt;/span> dropped &lt;span class="m">0&lt;/span> overruns &lt;span class="m">0&lt;/span> carrier &lt;span class="m">0&lt;/span> collisions &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>若没有生效可以尝试重启网络：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo systemctl restart networking
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="其它操作">其它操作
+&lt;/h3>&lt;h4 id="检测-ipv6-支持">检测 IPv6 支持
+&lt;/h4>&lt;p>执行 &lt;code>ping6 google.com&lt;/code> 命令，能 ping 通说明 VPS 已经支持 IPv6 网络了。&lt;/p>
+&lt;h4 id="nat-vps-的额外设置">NAT VPS 的额外设置
+&lt;/h4>&lt;p>IPv4 NAT VPS 除了前面提到的替换 IP 操作以外，可能还需要一些额外的设置，否则可能还是无法访问 IPv6 网络。&lt;/p>
+&lt;ol>
+&lt;li>配置防火墙允许 41 端口入站：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ufw allow &lt;span class="m">41&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>添加相关的路由规则：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">route -A inet6 add ::/0 dev he-ipv6
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="dns-设置优化">DNS 设置优化
+&lt;/h4>&lt;p>TIPS: 以下设置仅针对操作系统 DNS ，代理软件应单独设置内置的 DNS 和 IP 分流策略，具体参考相关软件文档中的 DNS 和路由部分。&lt;/p>
+&lt;h5 id="选择合适的-dns-解析服务器">选择合适的 DNS 解析服务器
+&lt;/h5>&lt;p>因为通过 IPv6 隧道去请求可能会拖慢 DNS 解析速度，所以一般不建议在系统中使用 IPv6 地址的 DNS。&lt;/p>
+&lt;p>编辑 &lt;code>/etc/resolv.conf&lt;/code> 文件，更改 DNS 解析服务器为支持查询 AAAA 记录的 DNS 服务器，比如 Google Public DNS：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">nameserver 8.8.8.8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nameserver 8.8.4.4
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h5 id="优先使用-ipv4-网络">优先使用 IPv4 网络
+&lt;/h5>&lt;p>默认情况下 IPv6 网络优先级会高于 IPv4 ，为了防止 IPv6 隧道拖慢 VPS 的正常网速，可以设置优先使用 IPv4 网络。同时也能减轻了对 HE Tun­nel Bro­ker 节点的网络压力，合理使用宝贵的免费资源。&lt;/p>
+&lt;p>编辑 &lt;code>/etc/gai.conf&lt;/code> 文件，在末尾添加下面这行配置：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">precedence ::ffff:0:0/96 &lt;span class="m">100&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>一键添加命令如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;precedence ::ffff:0:0/96 100&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> sudo tee -a /etc/gai.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>完事执行 &lt;code>curl ip.p3terx.com&lt;/code> 命令，显示 VPS 的 IPv4 地址则代表成功。&lt;/p>
+&lt;h3 id="删除-he-ipv6-隧道">删除 HE IPv6 隧道
+&lt;/h3>&lt;p>不想用了，或者想使用其它方式访问 IPv6 网络时，记得先删除。&lt;/p>
+&lt;ol>
+&lt;li>停用隧道：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo ifdown he-ipv6
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>删除 he-ipv6 网络接口配置文件（若没有删除重启后会自动启用）：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo rm -f /etc/network/interfaces.d/he-ipv6
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="无限ipv6代理-http-proxy-ipv6-pool">无限ipv6代理 Http Proxy IPv6 Pool
+&lt;/h3>&lt;p>Make every request from a separate IPv6 address.&lt;/p>
+&lt;p>&lt;a class="link" href="https://zu1k.com/posts/tutorials/http-proxy-ipv6-pool/" target="_blank" rel="noopener"
+>https://zu1k.com/posts/tutorials/http-proxy-ipv6-pool/&lt;/a>&lt;/p>
+&lt;h2 id="tutorial">Tutorial
+&lt;/h2>&lt;p>Assuming you already have an entire IPv6 subnet routed to your server, for me I purchased &lt;a class="link" href="https://www.vultr.com/?ref=9039594-8H" target="_blank" rel="noopener"
+>Vultr&amp;rsquo;s server&lt;/a> to get one.&lt;/p>
+&lt;p>Get your IPv6 subnet prefix and interface name, for me is &lt;code>2001:19f0:6001:48e4::/64&lt;/code> and &lt;code>enp1s0&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">$ ip a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">......
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2: enp1s0: &amp;lt;BROADCAST,MULTICAST,ALLMULTI,UP,LOWER_UP&amp;gt; mtu &lt;span class="m">1500&lt;/span> qdisc fq state UP group default qlen &lt;span class="m">1000&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ......
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> inet6 2001:19f0:6001:48e4:5400:3ff:fefa:a71d/64 scope global dynamic mngtmpaddr
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> valid_lft 2591171sec preferred_lft 603971sec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ......
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Add route via default internet interface&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">ip route add &lt;span class="nb">local&lt;/span> 2001:19f0:6001:48e4::/64 dev enp1s0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Open &lt;code>ip_nonlocal_bind&lt;/code> for binding any IP address:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">sysctl net.ipv6.ip_nonlocal_bind&lt;span class="o">=&lt;/span>&lt;span class="m">1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>For IPv6 NDP, install &lt;code>ndppd&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">apt install ndppd
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>then edit &lt;code>/etc/ndppd.conf&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">route-ttl 30000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">proxy &amp;lt;INTERFACE-NAME&amp;gt; {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> router no
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> timeout 500
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ttl 30000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule &amp;lt;IP6_SUBNET&amp;gt; {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> static
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>(edit the file to match your configuration)&lt;/p>
+&lt;p>Restart the service:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">service ndppd restart
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Now you can test by using &lt;code>curl&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">$ curl --interface 2001:19f0:6001:48e4::1 ipv6.ip.sb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2001:19f0:6001:48e4::1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ curl --interface 2001:19f0:6001:48e4::2 ipv6.ip.sb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2001:19f0:6001:48e4::2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Great!&lt;/p>
+&lt;p>Finally, use the http proxy provided by this project:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">$ &lt;span class="k">while&lt;/span> true&lt;span class="p">;&lt;/span> &lt;span class="k">do&lt;/span> curl -x http://127.0.0.1:51080 ipv6.ip.sb&lt;span class="p">;&lt;/span> &lt;span class="k">done&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2001:19f0:6001:48e4:971e:f12c:e2e7:d92a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2001:19f0:6001:48e4:6d1c:90fe:ee79:1123
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2001:19f0:6001:48e4:f7b9:b506:99d7:1be9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2001:19f0:6001:48e4:a06a:393b:e82f:bffc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2001:19f0:6001:48e4:245f:8272:2dfb:72ce
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2001:19f0:6001:48e4:df9e:422c:f804:94f7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2001:19f0:6001:48e4:dd48:6ba2:ff76:f1af
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2001:19f0:6001:48e4:1306:4a84:570c:f829
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2001:19f0:6001:48e4:6f3:4eb:c958:ddfa
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2001:19f0:6001:48e4:aa26:3bf9:6598:9e82
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2001:19f0:6001:48e4:be6b:6a62:f8f7:a14d
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2001:19f0:6001:48e4:b598:409d:b946:17c
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@pawel_czerwinski" target="_blank" rel="noopener"
+>Pawel Czerwinski&lt;/a> on &lt;a class="link" href="https://unsplash.com/" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>&lt;/blockquote></description></item></channel></rss>

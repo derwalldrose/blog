@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Acme,ssl on 沧海一声笑</title><link>https://blog.yonflee.us.kg/tags/acmessl/</link><description>Recent content in Acme,ssl on 沧海一声笑</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 20 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.yonflee.us.kg/tags/acmessl/index.xml" rel="self" type="application/rss+xml"/><item><title>acme自动申请证书</title><link>https://blog.yonflee.us.kg/p/acme%E8%87%AA%E5%8A%A8%E7%94%B3%E8%AF%B7%E8%AF%81%E4%B9%A6/</link><pubDate>Fri, 20 Sep 2024 00:00:00 +0000</pubDate><guid>https://blog.yonflee.us.kg/p/acme%E8%87%AA%E5%8A%A8%E7%94%B3%E8%AF%B7%E8%AF%81%E4%B9%A6/</guid><description>&lt;img src="https://pic.jiasu.in/1728899697359.png" alt="Featured image of post acme自动申请证书" />&lt;h3 id="ipv6-only">ipv6 only
+&lt;/h3>&lt;p>ipv6 only的机器没有v4入口，但是一般自带v4出口，带宽很小，只有v6带宽高
+系统默认的解析顺序是ipv6，对于支持ipv6的网站来说速度没有影响，但是对于只有ipv4的网站，走v4速度会很慢&lt;/p>
+&lt;p>这时我们可以安装warp代理v4流量，然后从warp v6出口，这时速度会有大幅提升&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh &amp;amp;&amp;amp; bash menu.sh [option] [lisence/url/token]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>选择warp 4
+然后修改里面的engpoint为官方默认的&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">root@wawo:~# cat /etc/wireguard/warp.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[Interface]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PrivateKey = nAT67OpRgxE4wTBNwAdkz8ydslrp7MCguEb/TlzxD+A=
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Address = 172.16.0.2/32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Address = 2606:4700:110:855f:fc54:6680:6544:e68c/128
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">DNS = 1.1.1.1,8.8.8.8,8.8.4.4,2606:4700:4700::1111,2001:4860:4860::8888,2001:4860:4860::8844
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">MTU = 1420
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PostUp = ip -4 rule add from 10.10.57.99 lookup main
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PostDown = ip -4 rule delete from 10.10.57.99 lookup main
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PostUp = ip -6 rule add from 2400:c620:2c:a291::1 lookup main
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PostDown = ip -6 rule delete from 2400:c620:2c:a291::1 lookup main
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#Reserved = [226,135,179]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#Table = off
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#PostUp = /etc/wireguard/NonGlobalUp.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#PostDown = /etc/wireguard/NonGlobalDown.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[Peer]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PublicKey = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">AllowedIPs = 0.0.0.0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#AllowedIPs = ::/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Endpoint = engage.cloudflareclient.com:2408
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PersistentKeepalive = 30
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>&lt;img src="https://pic.jiasu.in/1728899697359.png"
+loading="lazy"
+alt="image"
+>&lt;/p>&lt;/blockquote></description></item></channel></rss>

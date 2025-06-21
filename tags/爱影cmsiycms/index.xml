@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>爱影cms,iycms on 沧海一声笑</title><link>https://blog.yonflee.us.kg/tags/%E7%88%B1%E5%BD%B1cmsiycms/</link><description>Recent content in 爱影cms,iycms on 沧海一声笑</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.yonflee.us.kg/tags/%E7%88%B1%E5%BD%B1cmsiycms/index.xml" rel="self" type="application/rss+xml"/><item><title>爱影cms搭建iycms</title><link>https://blog.yonflee.us.kg/p/%E7%88%B1%E5%BD%B1cms%E6%90%AD%E5%BB%BAiycms/</link><pubDate>Sun, 20 Oct 2024 00:00:00 +0000</pubDate><guid>https://blog.yonflee.us.kg/p/%E7%88%B1%E5%BD%B1cms%E6%90%AD%E5%BB%BAiycms/</guid><description>&lt;img src="https://img.543083.xyz/api/cfile/AgACAgUAAxkDAAIBymcZ2gEc5061x-nlL9wtL0TbaIsaAAIlwDEbXNPRVIvESQrMDUDZAQADAgADeAADNgQ" alt="Featured image of post 爱影cms搭建iycms" />&lt;p>&lt;a class="link" href="https://iycms.com/index.html" target="_blank" rel="noopener"
+>爱影 CMS&lt;/a> 是市面上不多见的 GO 语言实现的 CMS 软件。虽然免费但是没有开源，考虑官方已经一个多月没有更新，且官方社区、电报群、在线客服都处于失联状态，很有可能要干不下去。所以先把官方安装教程、相关资源做个备份。&lt;/p>
+&lt;h2 id="ubuntu-安装脚本">&lt;a class="link" href="#Ubuntu-%e5%ae%89%e8%a3%85%e8%84%9a%e6%9c%ac" title="Ubuntu 安装脚本"
+>&lt;/a>Ubuntu 安装脚本
+&lt;/h2>&lt;p>官方提供了一键安装脚本，很方便。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo rm -f iycms.sh; sudo wget --no-check-certificate -c -O iycms.sh https://www.iycms.com/api/static/down/linux/ubuntu/install_x86_64.sh;sudo chmod +x iycms.sh;sudo ./iycms.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>install_x86_64.sh 文件内容：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/bin/bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>apt install -y unzip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;开始安装爱影CMS最新版本&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -f iycms.zip&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wget --no-check-certificate &lt;span class="s2">&amp;#34;https://www.iycms.com/api/v1/download/cms/latest?os=1&amp;amp;kind=x86_64&amp;#34;&lt;/span> -O iycms.zip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;解压文件&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">unzip -o -q iycms.zip -d /home/iycms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -f iycms.zip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;开始安装系统服务&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;[Unit]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">Description=iycms service
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">Documentation=https://www.iycms.com
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[Service]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">Type=simple
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">Restart=always
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">User=root
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">WorkingDirectory=/home/iycms/
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">ExecStart=/home/iycms/cms
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">RestartSec=1
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">StandardOutput=append:/home/iycms/stdout.log
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">StandardError=append:/home/iycms/stdout.log
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[Install]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">WantedBy=multi-user.target&amp;#34;&lt;/span>&amp;gt;/etc/systemd/system/iycms.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl daemon-reload
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl &lt;span class="nb">enable&lt;/span> iycms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl restart iycms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -f ./iycms.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl stop ufw
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl disable ufw
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;安装完成&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>到时候把安装程序的下载链接改成自己的就行。&lt;/p>
+&lt;p>脚本安装自动配置好了进程守护并使用 systemctl 管理器进行状态管理。&lt;/p>
+&lt;p>在线安装或脚本安装的默认安装路径为：/home/iycms&lt;/p>
+&lt;p>systemctl 管理：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">systemctl start iycms # 启动iycms服务
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl stop iycms # 停止iycms服务
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl restart iycms # 重新启动iycms服务
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="配置">&lt;a class="link" href="#%e9%85%8d%e7%bd%ae" title="配置"
+>&lt;/a>配置
+&lt;/h2>&lt;p>访问 &lt;a class="link" href="http://yourserver:21007/" target="_blank" rel="noopener"
+>http://yourserver:21007&lt;/a> 进入数据库安装界面。&lt;/p>
+&lt;p>数据库可选 MySQL 或 PostgreSQL。&lt;/p>
+&lt;p>我用的是 MySQL，虽然有选择数据库端口跟名称的步骤，但我实测不能改，否则找不到数据库，只能用默认值。&lt;/p>
+&lt;p>数据库安装完就可以登录后台配置网站内容了。&lt;/p>
+&lt;p>爱影 CMS 提供了很多插件，但是很多都是需要通过官方认证授权的，比如常用的统计分析、模板中心。一旦官方跑路，这些插件就不能用了。&lt;/p>
+&lt;p>网站统计没什么，把自己常用的统计代码放到模板 html 文件里就行。&lt;/p>
+&lt;p>模板的话，需要提前把模板压缩包备份，用的时候放到 &lt;code>/iycms/data/tpl/&lt;/code> 目录下。&lt;/p>
+&lt;p>资源备份地址：&lt;a class="link" href="https://github.com/LiangZuoting/iycms-backup" target="_blank" rel="noopener"
+>github&lt;/a>&lt;/p>
+&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@pawel_czerwinski" target="_blank" rel="noopener"
+>Pawel Czerwinski&lt;/a> on &lt;a class="link" href="https://unsplash.com/" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>&lt;/blockquote></description></item></channel></rss>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Proxyip on 沧海一声笑</title><link>https://blog.yonflee.us.kg/tags/proxyip/</link><description>Recent content in Proxyip on 沧海一声笑</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 06 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.yonflee.us.kg/tags/proxyip/index.xml" rel="self" type="application/rss+xml"/><item><title>如何使用iptables自建proxyip</title><link>https://blog.yonflee.us.kg/p/%E4%BD%BF%E7%94%A8iptables%E8%87%AA%E5%BB%BAproxyip/</link><pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate><guid>https://blog.yonflee.us.kg/p/%E4%BD%BF%E7%94%A8iptables%E8%87%AA%E5%BB%BAproxyip/</guid><description>&lt;img src="https://blog.yonflee.us.kg/p/%E4%BD%BF%E7%94%A8iptables%E8%87%AA%E5%BB%BAproxyip/cover.jpg" alt="Featured image of post 如何使用iptables自建proxyip" />&lt;h2 id="1-安装-iptables">1. 安装 iptables：
+&lt;/h2>&lt;ul>
+&lt;li>Ubuntu / Debian&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell-session" data-lang="shell-session">&lt;span class="line">&lt;span class="cl">&lt;span class="go">apt update &amp;amp;&amp;amp; apt install sudo -y &amp;amp;&amp;amp; sudo apt install iptables iptables-persistent -y
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>CentOS&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell-session" data-lang="shell-session">&lt;span class="line">&lt;span class="cl">&lt;span class="go">yum update -y &amp;amp;&amp;amp; yum install sudo -y &amp;amp;&amp;amp; sudo yum install iptables iptables-services -y
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>Alpine&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell-session" data-lang="shell-session">&lt;span class="line">&lt;span class="cl">&lt;span class="go">apk update &amp;amp;&amp;amp; apk add sudo bash iptables
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果提示失败可以尝试添加DNS后再重新运行以上命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell-session" data-lang="shell-session">&lt;span class="line">&lt;span class="cl">&lt;span class="go">echo -e &amp;#34;nameserver 1.1.1.1\nnameserver 8.8.8.8\nnameserver 2606:4700:4700::1111\nnameserver 2001:4860:4860::8888&amp;#34; | tee /etc/resolv.conf
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="2-修改-sysctl-配置">2. 修改 sysctl 配置：
+&lt;/h2>&lt;p>启用 IPv4 和 IPv6 的流量转发。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell-session" data-lang="shell-session">&lt;span class="line">&lt;span class="cl">&lt;span class="go">echo &amp;#39;net.ipv4.ip_forward=1&amp;#39; | sudo tee -a /etc/sysctl.conf
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">echo &amp;#39;net.ipv6.conf.all.forwarding=1&amp;#39; | sudo tee -a /etc/sysctl.conf
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">sudo sysctl -p
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接下来不会提供 IPv4 的部署方法，如果你有能力，可以自己修改命令去实现，如果你不会，说明你还不明白这个操作以为着什么，所以请不要自建 IPv4 的 ProxyIP！&lt;/p>
+&lt;h2 id="3-设置-ip6tables-转发-ipv6-流量规则">3. 设置 ip6tables 转发 IPv6 流量规则：
+&lt;/h2>&lt;p>先获取转发目标IP地址，推荐自行 解析 Cloudflare CDN 地址获得 CFIP，执行nslookup chat.openai.com，例如返回内容如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell-session" data-lang="shell-session">&lt;span class="line">&lt;span class="cl">&lt;span class="go">root:~# nslookup chat.openai.com
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">Server: 1.1.1.1
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">Address: 1.1.1.1#53
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="go">Non-authoritative answer:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">chat.openai.com canonical name = chat.openai.com.cdn.cloudflare.net.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">Name: chat.openai.com.cdn.cloudflare.net
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">Address: 104.18.37.228
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">Name: chat.openai.com.cdn.cloudflare.net
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">Address: 172.64.150.28
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">Name: chat.openai.com.cdn.cloudflare.net
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">Address: 2606:4700:4400::6812:25e4
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">Name: chat.openai.com.cdn.cloudflare.net
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">Address: 2606:4700:4400::ac40:961c
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">如果你的 VPS 只有 IPv6 出口，可以执行如下命令
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="go">sudo ip6tables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination [2606:4700:4400::ac40:961c]:443
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">sudo ip6tables -t nat -A POSTROUTING -p tcp -d 2606:4700:4400::ac40:961c --dport 443 -j MASQUERADE
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>通过以上步骤，你应该能够成功地在只有 IPv6 的 443 端口的流量转发到指定的 IPv6 地址 2606:4700:4400::ac40:961c。&lt;/p>
+&lt;p>你可以使用以下命令来查看 ip6tables 中的当前规则，确认规则已正确添加：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell-session" data-lang="shell-session">&lt;span class="line">&lt;span class="cl">&lt;span class="go">sudo ip6tables -t nat -L -v -n
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="4-保存-ip6tables-规则">4. 保存 ip6tables 规则：
+&lt;/h2>&lt;p>要确保在重启后规则依然有效，你需要将规则保存到文件中，并设置系统在启动时加载这些规则。&lt;/p>
+&lt;p>保存规则：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell-session" data-lang="shell-session">&lt;span class="line">&lt;span class="cl">&lt;span class="go">sudo ip6tables-save &amp;gt; /etc/iptables/rules.v6
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="5-重启系统或者手动加载规则">5. 重启系统或者手动加载规则
+&lt;/h2>&lt;p>你可以重启系统来验证规则是否被正确加载，或者手动加载保存的规则：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell-session" data-lang="shell-session">&lt;span class="line">&lt;span class="cl">&lt;span class="go">sudo ip6tables-restore &amp;lt; /etc/iptables/rules.v6
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="6-后悔药">6. 后悔药
+&lt;/h2>&lt;p>清除现有的转发规则&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell-session" data-lang="shell-session">&lt;span class="line">&lt;span class="cl">&lt;span class="go">sudo ip6tables -t nat -F
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@pawel_czerwinski" target="_blank" rel="noopener"
+>Pawel Czerwinski&lt;/a> on &lt;a class="link" href="https://unsplash.com/" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>&lt;/blockquote></description></item><item><title>如何使用nginx stream模块自建proxyip</title><link>https://blog.yonflee.us.kg/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8nginx-stream%E6%A8%A1%E5%9D%97%E8%87%AA%E5%BB%BAproxyip/</link><pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate><guid>https://blog.yonflee.us.kg/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8nginx-stream%E6%A8%A1%E5%9D%97%E8%87%AA%E5%BB%BAproxyip/</guid><description>&lt;img src="https://blog.yonflee.us.kg/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8nginx-stream%E6%A8%A1%E5%9D%97%E8%87%AA%E5%BB%BAproxyip/cover.jpg" alt="Featured image of post 如何使用nginx stream模块自建proxyip" />&lt;h2 id="转发cf域名">转发cf域名
+&lt;/h2>&lt;p>&lt;a class="link" href="https://blog.tanglu.me/cloudflare_proxy_ip/" target="_blank" rel="noopener"
+>https://blog.tanglu.me/cloudflare_proxy_ip/&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>如何避免被扫&lt;/li>
+&lt;li>演示alpine上
+1、安装nginx和stream模块&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell-session" data-lang="shell-session">&lt;span class="line">&lt;span class="cl">&lt;span class="go">apk add nginx nginx-mod-stream
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>2、添加配置cf.conf&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell-session" data-lang="shell-session">&lt;span class="line">&lt;span class="cl">&lt;span class="go">sg-ac:/etc/nginx/stream.d# ls -lrt
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">total 4
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">-rw-r--r-- 1 root root 849 Sep 5 01:56 cf.conf
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">sg-ac:/etc/nginx/stream.d# cat cf.conf
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> # 定义允许的上游服务器
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> upstream allowed_backend {
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> server 104.18.32.47:443;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="go"> # 定义一个拒绝连接的空上游（可以是无效的 IP 或者本地地址）
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> upstream reject_backend {
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> server 127.0.0.1:1; # 无效的服务器地址，用于拒绝连接
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> # 使用 map 指令根据 SNI 值选择上游
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> map $ssl_preread_server_name $backend {
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> # 允许的域名
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> worker.543083.xyz allowed_backend;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> blog.543083.xyz allowed_backend;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="go"> # 其他所有 SNI 值都将被拒绝
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> default reject_backend;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> # 定义服务器块，监听443端口
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> server {
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> listen 443;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="go"> # 启用 SSL 预读取功能以获取 SNI 信息
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> ssl_preread on;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go">&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="go"> # 根据 SNI 选择上游服务器
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> proxy_pass $backend;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="go"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其中allowed_backend是任意的cloudflare cdn节点，可以nslookup chatgpt.com得到一个ip，map中定义允许的反代域名，可以是自己的开了小黄云的cf域名，其他域名禁止访问，这样防止被扫出来当节点使用&lt;/p></description></item></channel></rss>

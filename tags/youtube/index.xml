@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Youtube on 沧海一声笑</title><link>https://blog.yonflee.us.kg/tags/youtube/</link><description>Recent content in Youtube on 沧海一声笑</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 10 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.yonflee.us.kg/tags/youtube/index.xml" rel="self" type="application/rss+xml"/><item><title>如何无广告看油管视频</title><link>https://blog.yonflee.us.kg/p/%E5%A6%82%E4%BD%95%E6%97%A0%E5%B9%BF%E5%91%8A%E7%9C%8B%E6%B2%B9%E7%AE%A1%E8%A7%86%E9%A2%91/</link><pubDate>Tue, 10 Sep 2024 00:00:00 +0000</pubDate><guid>https://blog.yonflee.us.kg/p/%E5%A6%82%E4%BD%95%E6%97%A0%E5%B9%BF%E5%91%8A%E7%9C%8B%E6%B2%B9%E7%AE%A1%E8%A7%86%E9%A2%91/</guid><description>&lt;img src="https://blog.yonflee.us.kg/p/%E5%A6%82%E4%BD%95%E6%97%A0%E5%B9%BF%E5%91%8A%E7%9C%8B%E6%B2%B9%E7%AE%A1%E8%A7%86%E9%A2%91/unsplash.jpg" alt="Featured image of post 如何无广告看油管视频" />&lt;h2 id="1-部署vless节点">1. 部署vless节点
+&lt;/h2>&lt;ul>
+&lt;li>注册cloudflare账号&lt;/li>
+&lt;li>部署worker节点&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell-session" data-lang="shell-session">&lt;span class="line">&lt;span class="cl">&lt;span class="go">参考https://github.com/cmliu/edgetunnel项目
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="2-使用工具优选ipv6节点">2. 使用工具优选ipv6节点
+&lt;/h2>&lt;p>使用上一个优选ip视频方法，进行ipv6优选,填入节点中&lt;/p>
+&lt;h2 id="3-设置ipv6路由优先">3. 设置ipv6路由优先
+&lt;/h2>&lt;p>设置客户端路由，优先使用ipv6，这样节点在解析油管域名时会优先使用ipv6地址&lt;/p>
+&lt;h2 id="4-enjoy">4. Enjoy!!!
+&lt;/h2>&lt;p>&lt;img src="https://unsplash.com/fr/photos/une-table-blanche-avec-un-miroir-et-un-parasol-dessus-ZWq7ede_hHI"
+loading="lazy"
+alt="enjoy"
+>&lt;/p>
+&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@pawel_czerwinski" target="_blank" rel="noopener"
+>Pawel Czerwinski&lt;/a> on &lt;a class="link" href="https://unsplash.com/" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>&lt;/blockquote></description></item></channel></rss>
